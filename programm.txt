@@ -1,0 +1,6 @@
+input 101
+input 102
+equ 101 102
+jz 12
+set 101 1
+output 101
