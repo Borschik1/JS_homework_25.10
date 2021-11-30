@@ -3,6 +3,7 @@
 
 Вызов программы:
   node VM.js name
+  
   name - название файла, в котором лежит программа
 
   Пример: node VM.js programm.txt
