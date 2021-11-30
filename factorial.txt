@@ -1,0 +1,9 @@
+input 101
+set 102 1
+set 103 1
+set 104 1
+mul 103 102 103
+add 102 104 102
+gre 102 101
+jnz 11
+output 103

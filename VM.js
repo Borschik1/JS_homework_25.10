@@ -2,7 +2,7 @@ let fs = require("fs");
 let arg = process.argv;
 let readlineSync = require('readline-sync');
 
-let progText = fs.readFileSync('programm.txt').toString();
+let progText = fs.readFileSync(arg[2]).toString();
 
 let ram = new Array();
 ram = progText.split(/\s+/);
@@ -12,12 +12,15 @@ size = ram.length;
 while (ip < size) {
 	switch(ram[ip]) {
 		case 'input':
-			ram[ram[ip + 1]] = readlineSync.question();
+			ram[ram[ip + 1]] = parseInt(readlineSync.question());
 			ip += 2
 			break;
 		case 'set':
-			ram[ram[ip + 1]] = ram[ip + 2];
+			ram[ram[ip + 1]] = parseInt(ram[ip + 2]);
 			ip += 3;
+			break;
+		case 'jmp':
+			ip = parseInt(ram[ip + 1]);
 			break;
 		case 'jz':
 			if (zeroFlag) {
@@ -32,28 +35,32 @@ while (ip < size) {
 				break;
 			}
 			ip += 2;
+			break;
 		case 'equ':
-			if (ram[ram[ip + 1]] == ram[ram[ip + 2]]) {
+			if (parseInt(ram[ram[ip + 1]]) == parseInt(ram[ram[ip + 2]])) {
 				zeroFlag = true;
 				ip += 3;
 				break;
 			}
+			zeroFlag = false;
 			ip += 3;
 			break;
 		case 'gre':
-			if (ram[ram[ip + 1]] > ram[ram[ip + 2]]) {
+			if (parseInt(ram[ram[ip + 1]]) > parseInt(ram[ram[ip + 2]])) {
 				zeroFlag = true;
 				ip += 3;
 				break;
 			}
+			zeroFlag = false;
 			ip += 3;
 			break;
 		case 'les':
-			if (ram[ram[ip + 1]] < ram[ram[ip + 2]]) {
+			if (parseInt(ram[ram[ip + 1]]) < parseInt(ram[ram[ip + 2]])) {
 				zeroFlag = true;
 				ip += 3;
 				break;
 			}
+			zeroFlag = false;
 			ip += 3;
 			break;
 		case 'output':

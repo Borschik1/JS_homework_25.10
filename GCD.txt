@@ -1,0 +1,11 @@
+input 101
+input 102
+equ 101 102
+jz 26
+gre 101 102
+jnz 20
+sub 101 102 101
+jmp 4
+sub 102 101 102
+jmp 4
+output 101
